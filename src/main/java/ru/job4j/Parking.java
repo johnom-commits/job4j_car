@@ -3,7 +3,7 @@ package ru.job4j;
 public class Parking implements IParking {
     private int numberPlacesPassCars;
     private int numberPlacesTrucks;
-    private Control control = new Control();
+//    private Control control = new Control();
 
     public Parking(int numberPlacesPassCars, int numberPlacesTrucks) {
         this.numberPlacesPassCars = numberPlacesPassCars;
@@ -18,9 +18,9 @@ public class Parking implements IParking {
         return numberPlacesTrucks;
     }
 
-    public void takePlace(Car vahicle) {
-        control.CanEnter();
-    }
+//    public void takePlace(Car vahicle) {
+//        control.CanEnter();
+//    }
 
     public void leavePlace(Car vahicle) {
 
