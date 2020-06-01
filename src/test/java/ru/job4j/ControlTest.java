@@ -17,14 +17,14 @@ public class ControlTest {
     public void whenParkingPassCar() {
         Car passCar = new PassengerCar();
         control.parked(passCar);
-        int occupiedCarPlaces = control.OccupiedCarPlaces();
+        int occupiedCarPlaces = control.occupiedCarPlaces();
         assertEquals(1, occupiedCarPlaces);
     }
 
     @Test
     public void whenPassCarMayParking() {
         Car passCar = new PassengerCar();
-        boolean parked = control.CanEnter(passCar);
+        boolean parked = control.canEnter(passCar);
         assertTrue(parked);
     }
 
@@ -32,14 +32,14 @@ public class ControlTest {
     public void whenParkingTruck() {
         Car truck = new Truck(4);
         control.parked(truck);
-        int occupiedCarPlaces = control.OccupiedCarPlaces();
+        int occupiedCarPlaces = control.occupiedCarPlaces();
         assertEquals(4, occupiedCarPlaces);
     }
 
     @Test
     public void whenTruckMayParking() {
         Car truck = new Truck(4);
-        boolean parked = control.CanEnter(truck);
+        boolean parked = control.canEnter(truck);
         assertTrue(parked);
     }
 }

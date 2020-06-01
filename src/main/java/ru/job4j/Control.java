@@ -1,17 +1,17 @@
 package ru.job4j;
 
 public class Control {
-    private Parking parking;
+    private  Parking parking;
 
     public Control(Parking parking) {
         this.parking = parking;
     }
 
-    public boolean CanEnter(Car car) {
+    public boolean canEnter(Car car) {
         return true;
     }
 
-    public int OccupiedCarPlaces() {
+    public int occupiedCarPlaces() {
         return 0;
     }
 
