@@ -8,13 +8,31 @@ public class Control {
     }
 
     public boolean canEnter(Car car) {
-        return true;
+        if (car instanceof PassengerCar) {
+            if (parking.getNumberFreePlacesPassCars() > 0) {
+                return true;
+            }
+        } else {
+            if (parking.getNumberFreePlacesTrucks() > 0 && parking.getNumberFreePlacesPassCars() > car.getNumberPlaces()) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public int occupiedCarPlaces() {
-        return 0;
+    public int occupiedPassCarPlaces() {
+        return parking.getNumberoccupiedPassCarPlaces();
     }
 
-    public void parked(Car passCar) {
+    public int occupiedTruckPlaces() {
+        return parking.getNumberoccupiedTruckPlaces();
+    }
+
+    public void parked(Car car) {
+        parking.parked(car);
+    }
+
+    public void leaving(Car car) {
+        parking.leavePlace(car);
     }
 }

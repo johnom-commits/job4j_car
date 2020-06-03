@@ -3,7 +3,8 @@ package ru.job4j;
 public class Parking implements IParking {
     private int numberPlacesPassCars;
     private int numberPlacesTrucks;
-//    private Control control = new Control();
+    private int occupiedPlacesPassCars;
+    private int occupiedPlacesTrucks;
 
     public Parking(int numberPlacesPassCars, int numberPlacesTrucks) {
         this.numberPlacesPassCars = numberPlacesPassCars;
@@ -11,18 +12,40 @@ public class Parking implements IParking {
     }
 
     public int getNumberFreePlacesPassCars() {
-        return numberPlacesPassCars;
+        return numberPlacesPassCars - occupiedPlacesPassCars;
     }
 
     public int getNumberFreePlacesTrucks() {
-        return numberPlacesTrucks;
+        return numberPlacesTrucks - occupiedPlacesTrucks;
     }
 
-//    public void takePlace(Car vahicle) {
-//        control.CanEnter();
-//    }
+    public void leavePlace(Car car) {
+        if (car instanceof PassengerCar) {
+            --occupiedPlacesPassCars;
+        } else {
+            --occupiedPlacesTrucks;
+        }
+    }
 
-    public void leavePlace(Car vahicle) {
+    public void parked(Car car) {
+        int numberPlaces = car.getNumberPlaces();
+        if (car instanceof PassengerCar) {
+            ++occupiedPlacesPassCars;
+        } else {
+            // если это грузовик и все места для них заняты, то ставим на стоянку легковых
+            if (numberPlacesTrucks == occupiedPlacesTrucks) {
+                occupiedPlacesPassCars = occupiedPlacesPassCars + numberPlaces;
+            } else {    // иначе ставим грузовик на стоянку грузовиков
+                ++occupiedPlacesTrucks;
+            }
+        }
+    }
 
+    public int getNumberoccupiedPassCarPlaces() {
+        return occupiedPlacesPassCars;
+    }
+
+    public int getNumberoccupiedTruckPlaces() {
+        return occupiedPlacesTrucks;
     }
 }

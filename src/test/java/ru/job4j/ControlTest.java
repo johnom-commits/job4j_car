@@ -17,8 +17,8 @@ public class ControlTest {
     public void whenParkingPassCar() {
         Car passCar = new PassengerCar();
         control.parked(passCar);
-        int occupiedCarPlaces = control.occupiedCarPlaces();
-        assertEquals(1, occupiedCarPlaces);
+        int occupiedPassCarPlaces = control.occupiedPassCarPlaces();
+        assertEquals(1, occupiedPassCarPlaces);
     }
 
     @Test
@@ -32,8 +32,8 @@ public class ControlTest {
     public void whenParkingTruck() {
         Car truck = new Truck(4);
         control.parked(truck);
-        int occupiedCarPlaces = control.occupiedCarPlaces();
-        assertEquals(4, occupiedCarPlaces);
+        int occupiedCarPlaces = control.occupiedTruckPlaces();
+        assertEquals(1, occupiedCarPlaces);
     }
 
     @Test
@@ -41,5 +41,16 @@ public class ControlTest {
         Car truck = new Truck(4);
         boolean parked = control.canEnter(truck);
         assertTrue(parked);
+    }
+
+    @Test
+    public void whenParkingAndLeavingPassCars() {
+        Car passCar = new PassengerCar();
+        control.parked(passCar);
+        Car passCar2 = new PassengerCar();
+        control.parked(passCar2);
+        control.leaving(passCar);
+        int occupiedPassCarPlaces = control.occupiedPassCarPlaces();
+        assertEquals(1, occupiedPassCarPlaces);
     }
 }
